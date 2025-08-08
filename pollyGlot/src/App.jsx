@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import './App.css';
 import parrot from './assets/parrot.png';
+import frFlag from './assets/fr-flag.png';
+import spFlag from './assets/sp-flag.png';
+import jpFlag from './assets/jpn-flag.png';
 
 function App() {
-  const [isTranslated, setIsTranslated] = useState(false);
+  const [isTranslated, setIsTranslated] = useState(true);
 
   return (
     <main className='container-main'>
@@ -22,7 +25,7 @@ function App() {
         <section className='section-translator'>
           <div className='container-translator'>
             <form className='form'>
-              <div>
+              <div className='form-section-1'>
                 {isTranslated ? (
                   <h2 className='form-labels'>Original text 👇</h2>
                 ) : (
@@ -30,34 +33,55 @@ function App() {
                     Text to Translate 👇
                   </label>
                 )}
-                <textarea id='user-text'></textarea>
+                {isTranslated ? (
+                  <div>
+                    <p className='translation'></p>
+                  </div>
+                ) : (
+                  <textarea id='user-text'></textarea>
+                )}
               </div>
 
               <div>
                 {isTranslated ? (
-                  <h2 className='form-labels'>Your Translation</h2>
+                  <h2 className='form-labels'>Your Translation 👇</h2>
                 ) : (
-                  <label className='form-labels'>Select Language</label>
+                  <label className='form-labels'>Select Language 👇</label>
                 )}
-                <div className='radios'>
-                  <label htmlFor='french'>
-                    <input type='radio' name='language' id='french' />
-                    French
-                  </label>
+                {isTranslated ? (
+                  <div>
+                    <p className='translation'></p>
+                  </div>
+                ) : (
+                  <div className='radios'>
+                    <label htmlFor='french' className='radio-label'>
+                      <input type='radio' name='language' id='french' />
+                      French
+                      <span>
+                        <img src={frFlag} />
+                      </span>
+                    </label>
 
-                  <label htmlFor='spanish'>
-                    <input type='radio' name='language' id='spanish' />
-                    Spanish
-                  </label>
+                    <label htmlFor='spanish' className='radio-label'>
+                      <input type='radio' name='language' id='spanish' />
+                      Spanish
+                      <span>
+                        <img src={spFlag} />
+                      </span>
+                    </label>
 
-                  <label htmlFor='japanese'>
-                    <input type='radio' name='language' id='japanese' />
-                    Japanese
-                  </label>
-                </div>
+                    <label htmlFor='japanese' className='radio-label'>
+                      <input type='radio' name='language' id='japanese' />
+                      Japanese{' '}
+                      <span>
+                        <img src={jpFlag} />
+                      </span>
+                    </label>
+                  </div>
+                )}
               </div>
 
-              <button></button>
+              <button>{isTranslated ? 'Start Over' : 'Translate'}</button>
             </form>
           </div>
         </section>
