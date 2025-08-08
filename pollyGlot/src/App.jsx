@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { OpenAI } from 'openai';
 import './App.css';
 import parrot from './assets/parrot.png';
 import frFlag from './assets/fr-flag.png';
@@ -10,11 +9,6 @@ function App() {
   const [isTranslated, setIsTranslated] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [selectedRadio, setSelectedRadio] = useState('');
-
-  const client = new OpenAI({
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true,
-  });
 
   async function handleSubmit(e) {
     e.preventDefault();
