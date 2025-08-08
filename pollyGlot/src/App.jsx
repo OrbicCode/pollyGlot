@@ -9,17 +9,37 @@ function App() {
   const [isTranslated, setIsTranslated] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [selectedRadio, setSelectedRadio] = useState('');
+  const [translation, setTranslation] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
     if (isTranslated === false) {
       setIsTranslated(true);
-      console.log(inputValue);
-      console.log(selectedRadio);
+      try {
+        const response = await fetch('/api/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: inputValue,
+            language: selectedRadio,
+          }),
+        });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Server error: ${response.status} - ${errorText}`);
+        }
+        const data = await response.json();
+        setTranslation(data);
+      } catch (err) {
+        console.error('Translation error:', err);
+        alert('Translation failed: ' + err.message);
+      }
     }
 
     if (isTranslated === true) {
       setIsTranslated(false);
+      setInputValue('');
+      setTranslation(null);
     }
   }
 
@@ -50,7 +70,7 @@ function App() {
                 )}
                 {isTranslated ? (
                   <div>
-                    <p className='translation'></p>
+                    <p className='translation'>{inputValue}</p>
                   </div>
                 ) : (
                   <textarea
@@ -70,7 +90,9 @@ function App() {
                 )}
                 {isTranslated ? (
                   <div>
-                    <p className='translation'></p>
+                    <p className='translation'>
+                      {translation && translation.translation}
+                    </p>
                   </div>
                 ) : (
                   <div className='radios'>
