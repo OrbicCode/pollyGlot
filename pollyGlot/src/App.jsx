@@ -21,29 +21,39 @@ function App() {
         </header>
         <section className='section-translator'>
           <div className='container-translator'>
-            <form>
+            <form className='form'>
               <div>
                 {isTranslated ? (
-                  <h2>Original text 👇</h2>
+                  <h2 className='form-labels'>Original text 👇</h2>
                 ) : (
-                  <label htmlFor='user-text'>Text to Translate 👇</label>
+                  <label htmlFor='user-text' className='form-labels'>
+                    Text to Translate 👇
+                  </label>
                 )}
                 <textarea id='user-text'></textarea>
               </div>
 
               <div>
                 {isTranslated ? (
-                  <h2>Your Translation</h2>
+                  <h2 className='form-labels'>Your Translation</h2>
                 ) : (
-                  <label>Select Language</label>
+                  <label className='form-labels'>Select Language</label>
                 )}
-                <div>
-                  <input type='radio' name='language' id='french' />
-                  <label htmlFor='french'>French</label>
-                  <input type='radio' name='language' id='spanish' />
-                  <label htmlFor='spanish'> Spanish</label>
-                  <input type='radio' name='language' id='japanese' />
-                  <label htmlFor='japanese'> Japanese</label>
+                <div className='radios'>
+                  <label htmlFor='french'>
+                    <input type='radio' name='language' id='french' />
+                    French
+                  </label>
+
+                  <label htmlFor='spanish'>
+                    <input type='radio' name='language' id='spanish' />
+                    Spanish
+                  </label>
+
+                  <label htmlFor='japanese'>
+                    <input type='radio' name='language' id='japanese' />
+                    Japanese
+                  </label>
                 </div>
               </div>
 

@@ -67,8 +67,19 @@
 
 .container-translator {
   margin: 25px;
+  padding: 1em;
   width: 362px;
   height: 505px;
   border: 4px solid black;
   border-radius: 15px;
+}
+
+.form-labels {
+  text-align: center;
+  display: block;
+}
+
+.radios {
+  display: flex;
+  flex-direction: column;
 }
