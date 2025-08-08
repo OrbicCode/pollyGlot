@@ -91,6 +91,13 @@
   margin: 0.5em 0 1em;
 }
 
+textarea {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 0.5em;
+}
+
 .radios {
   display: flex;
   flex-direction: column;

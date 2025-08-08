@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { OpenAI } from 'openai';
 import './App.css';
 import parrot from './assets/parrot.png';
 import frFlag from './assets/fr-flag.png';
@@ -6,7 +7,27 @@ import spFlag from './assets/sp-flag.png';
 import jpFlag from './assets/jpn-flag.png';
 
 function App() {
-  const [isTranslated, setIsTranslated] = useState(true);
+  const [isTranslated, setIsTranslated] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [selectedRadio, setSelectedRadio] = useState('');
+
+  const client = new OpenAI({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+  });
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (isTranslated === false) {
+      setIsTranslated(true);
+      console.log(inputValue);
+      console.log(selectedRadio);
+    }
+
+    if (isTranslated === true) {
+      setIsTranslated(false);
+    }
+  }
 
   return (
     <main className='container-main'>
@@ -24,7 +45,7 @@ function App() {
         </header>
         <section className='section-translator'>
           <div className='container-translator'>
-            <form className='form'>
+            <form onSubmit={handleSubmit} className='form'>
               <div className='form-section-1'>
                 {isTranslated ? (
                   <h2 className='form-labels'>Original text 👇</h2>
@@ -38,7 +59,12 @@ function App() {
                     <p className='translation'></p>
                   </div>
                 ) : (
-                  <textarea id='user-text'></textarea>
+                  <textarea
+                    id='user-text'
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    className='user-textarea'
+                  ></textarea>
                 )}
               </div>
 
@@ -55,7 +81,13 @@ function App() {
                 ) : (
                   <div className='radios'>
                     <label htmlFor='french' className='radio-label'>
-                      <input type='radio' name='language' id='french' />
+                      <input
+                        type='radio'
+                        name='language'
+                        id='french'
+                        value='french'
+                        onChange={(e) => setSelectedRadio(e.target.value)}
+                      />
                       French
                       <span>
                         <img src={frFlag} />
@@ -63,7 +95,13 @@ function App() {
                     </label>
 
                     <label htmlFor='spanish' className='radio-label'>
-                      <input type='radio' name='language' id='spanish' />
+                      <input
+                        type='radio'
+                        name='language'
+                        id='spanish'
+                        value='spanish'
+                        onChange={(e) => setSelectedRadio(e.target.value)}
+                      />
                       Spanish
                       <span>
                         <img src={spFlag} />
@@ -71,7 +109,13 @@ function App() {
                     </label>
 
                     <label htmlFor='japanese' className='radio-label'>
-                      <input type='radio' name='language' id='japanese' />
+                      <input
+                        type='radio'
+                        name='language'
+                        id='japanese'
+                        value='japanese'
+                        onChange={(e) => setSelectedRadio(e.target.value)}
+                      />
                       Japanese{' '}
                       <span>
                         <img src={jpFlag} />
