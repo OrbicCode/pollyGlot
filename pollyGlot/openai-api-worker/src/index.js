@@ -13,6 +13,7 @@ export default {
 		}
 		const client = new OpenAI({
 			apiKey: env.OPENAI_API_KEY,
+			baseURL: 'https://gateway.ai.cloudflare.com/v1/3dfb1a331dc3ffca1719d331edbbb8eb/pollyglot/openai',
 		});
 
 		try {
