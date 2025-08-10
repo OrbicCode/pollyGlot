@@ -1,7 +1,16 @@
 import OpenAI from 'openai';
 
+const corsHeaders = {
+	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Methods': 'POST, OPTIONS',
+	'Access-Control-Allow-Headers': 'Content-Type',
+};
+
 export default {
 	async fetch(request, env, ctx) {
+		if (request.method === 'OPTIONS') {
+			return new Response(null, { headers: corsHeaders });
+		}
 		const client = new OpenAI({
 			apiKey: env.OPENAI_API_KEY,
 		});
@@ -10,7 +19,10 @@ export default {
 			const { text, language } = await request.json();
 
 			if (!text || !language) {
-				return new Response('Missing text or language field');
+				return new Response(JSON.stringify({ error: 'Missing text or language field' }), {
+					status: 400,
+					headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+				});
 			}
 
 			const messages = [
@@ -31,9 +43,14 @@ export default {
 
 			const translation = response.choices?.[0]?.message?.content;
 
-			return new Response(JSON.stringify({ translation }));
+			return new Response(JSON.stringify({ translation }), {
+				headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+			});
 		} catch (error) {
-			return new Response(error);
+			return new Response(JSON.stringify({ error: error.message }), {
+				status: 500,
+				headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+			});
 		}
 	},
 };
