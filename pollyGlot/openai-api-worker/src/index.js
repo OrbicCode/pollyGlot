@@ -11,6 +11,13 @@ export default {
 		if (request.method === 'OPTIONS') {
 			return new Response(null, { headers: corsHeaders });
 		}
+
+		if (request.method !== 'POST') {
+			return new Response(JSON.stringify({ error: `${request.method} method not allowed.` }), {
+				headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+			});
+		}
+
 		const client = new OpenAI({
 			apiKey: env.OPENAI_API_KEY,
 			baseURL: 'https://gateway.ai.cloudflare.com/v1/3dfb1a331dc3ffca1719d331edbbb8eb/pollyglot/openai',
