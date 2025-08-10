@@ -28,6 +28,11 @@ function App() {
           }
         );
         const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(`Worker Error: ${data.error}`);
+        }
+
         setTranslation(data);
       } catch (err) {
         console.error('Translation error:', err);
