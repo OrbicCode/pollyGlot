@@ -16,23 +16,21 @@ function App() {
     if (isTranslated === false) {
       setIsTranslated(true);
       try {
-        const response = await fetch('/api/translate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            text: inputValue,
-            language: selectedRadio,
-          }),
-        });
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`Server error: ${response.status} - ${errorText}`);
-        }
+        const response = await fetch(
+          'https://openai-api-worker.orbiccode.workers.dev/',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              text: inputValue,
+              language: selectedRadio,
+            }),
+          }
+        );
         const data = await response.json();
         setTranslation(data);
       } catch (err) {
         console.error('Translation error:', err);
-        alert('Translation failed: ' + err.message);
       }
     }
 
