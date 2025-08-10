@@ -35,7 +35,7 @@ function App() {
 
         setTranslation(data);
       } catch (err) {
-        console.error('Translation error:', err);
+        console.error(err);
       }
     }
 
