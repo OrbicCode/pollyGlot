@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import type { Request, Response } from 'express';
 import { translationRouter } from './routes/translation';
 
@@ -9,6 +10,7 @@ const app = express();
 const PORT = process.env.EXPRESS_PORT || 3000;
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/translation', translationRouter);
 

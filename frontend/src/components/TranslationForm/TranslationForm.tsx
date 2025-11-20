@@ -4,15 +4,15 @@ import styles from './TranslationForm.module.css';
 import frFlag from '../../assets/fr-flag.png';
 import spFlag from '../../assets/sp-flag.png';
 import jpFlag from '../../assets/jpn-flag.png';
-import type { Data } from '../../App';
+import type { FormData } from '../../App';
 
 interface TranslationFormProps {
-  setData: (data: Data) => void;
+  setFormData: (data: FormData) => void;
 }
 
-export default function TranslationForm({ setData }: TranslationFormProps): JSX.Element {
+export default function TranslationForm({ setFormData }: TranslationFormProps): JSX.Element {
   const [text, setText] = useState<string>('');
-  const [selectedLanguage, setSelectedLanguage] = useState<string>('french');
+  const [targetLanguage, setTargetLanguage] = useState<string>('french');
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
 
@@ -21,7 +21,7 @@ export default function TranslationForm({ setData }: TranslationFormProps): JSX.
   }
 
   function handleRadioChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setSelectedLanguage(e.target.value);
+    setTargetLanguage(e.target.value);
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -30,9 +30,9 @@ export default function TranslationForm({ setData }: TranslationFormProps): JSX.
     if (!text) {
       setError('Must type something to be translated');
     } else {
-      setData({
+      setFormData({
         text,
-        selectedLanguage,
+        targetLanguage,
       });
       setError('');
       setSuccess('Translating...');
@@ -59,7 +59,7 @@ export default function TranslationForm({ setData }: TranslationFormProps): JSX.
               value='french'
               id='french'
               type='radio'
-              checked={selectedLanguage === 'french'}
+              checked={targetLanguage === 'french'}
               onChange={(e) => handleRadioChange(e)}
             />
             <label>French</label>
@@ -71,7 +71,7 @@ export default function TranslationForm({ setData }: TranslationFormProps): JSX.
               value='spanish'
               id='spanish'
               type='radio'
-              checked={selectedLanguage === 'spanish'}
+              checked={targetLanguage === 'spanish'}
               onChange={(e) => handleRadioChange(e)}
             />
             <label>Spanish</label>
@@ -83,7 +83,7 @@ export default function TranslationForm({ setData }: TranslationFormProps): JSX.
               value='japanese'
               id='japanese'
               type='radio'
-              checked={selectedLanguage === 'japanese'}
+              checked={targetLanguage === 'japanese'}
               onChange={(e) => handleRadioChange(e)}
             />
             <label>Japanese</label>
