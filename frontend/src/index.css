@@ -2,10 +2,17 @@
   box-sizing: border-box;
 }
 
+:root {
+  --green: #32cd32;
+  --blue: #035a9d;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
+  background: black;
 }
 
 h1 {
   font-family: 'Big Shoulders', sans-serif;
+  color: var(--green);
 }
