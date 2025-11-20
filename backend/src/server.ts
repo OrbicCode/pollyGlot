@@ -8,6 +8,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.EXPRESS_PORT || 3000;
 
+app.use(express.json());
+
 app.use('/translation', translationRouter);
 
 app.use((req: Request, res: Response<{ message: string }>): void => {

@@ -8,8 +8,15 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export async function getTranslation(req: Request, res: Response) {
+export async function postTranslation(
+  req: Request<{}, unknown, { text: string; targetLanguage: string }>,
+  res: Response<{ translation: string | null } | { error: string }>
+) {
   const { text, targetLanguage } = req.body;
+
+  if (!text || !targetLanguage) {
+    return res.status(400).json({ error: 'Text and target language are required.' });
+  }
 
   const messages = [
     {
@@ -31,5 +38,16 @@ export async function getTranslation(req: Request, res: Response) {
       model: 'gpt-4.1-nano',
       messages: messages,
     });
-  } catch (error) {}
+
+    const translation = response.choices[0].message.content;
+
+    if (!translation) {
+      return res.status(500).json({ error: 'OpenAI response returned empty' });
+    }
+
+    res.json({ translation: translation });
+  } catch (error: any) {
+    console.error('OpenAI API Error: ', error);
+    res.status(500).json({ error: error.message || 'An unexpected error occurred' });
+  }
 }
