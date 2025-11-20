@@ -23,7 +23,7 @@ export async function postTranslation(
       role: 'system' as const,
       content: `You are a translator. You will be given text to translate by the user. 
                 You will also be given the language to translate it into, placed between the ### separators below. 
-                You will translate as accurately as possible and NOT add any flourishes.
+                You will translate as accurately as possible and use proper grammer.
                 ###
                 ${targetLanguage}
                 ###`,
