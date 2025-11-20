@@ -13,6 +13,8 @@ interface TranslationFormProps {
 export default function TranslationForm({ setData }: TranslationFormProps): JSX.Element {
   const [text, setText] = useState<string>('');
   const [selectedLanguage, setSelectedLanguage] = useState<string>('french');
+  const [error, setError] = useState<string>('');
+  const [success, setSuccess] = useState<string>('');
 
   function handleTextChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setText(e.target.value);
@@ -25,10 +27,16 @@ export default function TranslationForm({ setData }: TranslationFormProps): JSX.
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    setData({
-      text,
-      selectedLanguage,
-    });
+    if (!text) {
+      setError('Must type something to be translated');
+    } else {
+      setData({
+        text,
+        selectedLanguage,
+      });
+      setError('');
+      setSuccess('Translating...');
+    }
   }
 
   return (
@@ -83,7 +91,14 @@ export default function TranslationForm({ setData }: TranslationFormProps): JSX.
           </li>
         </ul>
       </fieldset>
-      <button>Translate</button>
+      <div>
+        <button>Translate</button>
+        {error ? (
+          <p className={styles.errorMessage}>{error}</p>
+        ) : success ? (
+          <p className={styles.success}>{success}</p>
+        ) : null}
+      </div>
     </form>
   );
 }

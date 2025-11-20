@@ -65,8 +65,24 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: white;
+  width: 100%;
   padding: 0.3em;
   background: var(--blue);
   border: none;
   border-radius: 6px;
+}
+
+.success,
+.errorMessage {
+  text-align: center;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.errorMessage {
+  color: var(--red);
+}
+
+.success {
+  color: var(--green);
 }

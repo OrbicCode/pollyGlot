@@ -10,7 +10,9 @@ export interface Data {
 
 function App() {
   const [data, setData] = useState<Data>();
-  console.log(data);
+  if (data) {
+    console.log(data);
+  }
   return (
     <main className='mainContainer'>
       <Header />
