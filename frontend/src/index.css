@@ -5,6 +5,8 @@
 :root {
   --green: #32cd32;
   --blue: #035a9d;
+  --grey: #999999;
+  --light-grey: #eff0f4;
 }
 
 body {
@@ -16,7 +18,7 @@ body {
 
 h1 {
   font-family: 'Big Shoulders', sans-serif;
-  font-size: 1.875rem;
+  font-size: 2.5rem;
   color: var(--green);
   margin: 0;
 }
