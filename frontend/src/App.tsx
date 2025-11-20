@@ -12,7 +12,7 @@ export interface FormData {
 function App() {
   const [formData, setFormData] = useState<FormData>();
   const [translation, setTranslation] = useState<string | null>();
-  const [isTranslated, setIsTranslated] = useState<boolean>(true);
+  const [isTranslated, setIsTranslated] = useState<boolean>(false);
 
   useEffect(() => {
     async function createTranslation() {
