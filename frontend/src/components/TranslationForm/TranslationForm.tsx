@@ -62,7 +62,7 @@ export default function TranslationForm({ setFormData }: TranslationFormProps): 
               checked={targetLanguage === 'french'}
               onChange={(e) => handleRadioChange(e)}
             />
-            <label>French</label>
+            <label htmlFor='french'>French</label>
             <img src={frFlag} alt='The French flag.' width={30} height={20} />
           </li>
           <li>
@@ -74,7 +74,7 @@ export default function TranslationForm({ setFormData }: TranslationFormProps): 
               checked={targetLanguage === 'spanish'}
               onChange={(e) => handleRadioChange(e)}
             />
-            <label>Spanish</label>
+            <label htmlFor='spanish'>Spanish</label>
             <img src={spFlag} alt='The Spanish flag.' width={30} height={20} />
           </li>
           <li>
@@ -86,18 +86,18 @@ export default function TranslationForm({ setFormData }: TranslationFormProps): 
               checked={targetLanguage === 'japanese'}
               onChange={(e) => handleRadioChange(e)}
             />
-            <label>Japanese</label>
+            <label htmlFor='japanese'>Japanese</label>
             <img src={jpFlag} alt='The Japanese flag.' width={30} height={20} />
           </li>
         </ul>
       </fieldset>
       <div>
-        <button>Translate</button>
         {error ? (
           <p className={styles.errorMessage}>{error}</p>
         ) : success ? (
           <p className={styles.success}>{success}</p>
         ) : null}
+        <button>Translate</button>
       </div>
     </form>
   );

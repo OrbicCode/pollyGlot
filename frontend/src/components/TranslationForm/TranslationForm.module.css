@@ -33,6 +33,7 @@
 .radioFieldset ul {
   list-style: none;
   margin: 1em 0;
+  margin-top: calc(1em + 4px);
   padding-left: 15px;
 }
 
@@ -42,10 +43,10 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  cursor: pointer;
+  margin-block: 3px;
 }
 
-.radioFieldset li * {
+.radioFieldset label {
   cursor: pointer;
 }
 
@@ -53,6 +54,7 @@
   width: 17px;
   height: 17px;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .radioFieldset img {
@@ -70,13 +72,14 @@
   background: var(--blue);
   border: none;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .success,
 .errorMessage {
   text-align: center;
   font-weight: 500;
-  margin-top: 5px;
+  margin: -1.5rem 0 0 0;
 }
 
 .errorMessage {

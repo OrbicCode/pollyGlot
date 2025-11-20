@@ -1,0 +1,29 @@
+.container {
+  display: grid;
+  grid-column: 100%;
+}
+
+.originalText,
+.result {
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 600;
+  background: var(--light-grey);
+  height: 118px;
+  padding: 0.5em;
+  border-radius: 15px;
+  overflow-y: scroll;
+}
+
+.container button {
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  width: 100%;
+  padding: 0.3em;
+  background: var(--blue);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

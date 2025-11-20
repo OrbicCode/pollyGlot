@@ -12,7 +12,7 @@ export interface FormData {
 function App() {
   const [formData, setFormData] = useState<FormData>();
   const [translation, setTranslation] = useState<string | null>();
-  const [isTranslated, setIsTranslated] = useState<boolean>(false);
+  const [isTranslated, setIsTranslated] = useState<boolean>(true);
 
   useEffect(() => {
     async function createTranslation() {
@@ -51,7 +51,11 @@ function App() {
       <section className='translationSection'>
         <div className='translationContainer'>
           {isTranslated ? (
-            <TranslationResult translation={translation} />
+            <TranslationResult
+              translation={translation}
+              formData={formData}
+              setIsTranslated={setIsTranslated}
+            />
           ) : (
             <TranslationForm setFormData={setFormData} />
           )}
