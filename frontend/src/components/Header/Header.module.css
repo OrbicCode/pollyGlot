@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../assets/worldmap.png);
+  background-position: center;
+  background-size: cover;
+  height: 213px;
+}
+
+.contentContainer {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.subTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
