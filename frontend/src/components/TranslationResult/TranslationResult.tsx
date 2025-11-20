@@ -5,7 +5,7 @@ export default function TranslationResult({
 }) {
   return (
     <>
-      <h2>{translation}</h2>
+      <h2>{translation && translation}</h2>
     </>
   );
 }

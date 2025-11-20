@@ -13,7 +13,6 @@ function App() {
   const [formData, setFormData] = useState<FormData>();
   const [translation, setTranslation] = useState<string | null>();
   const [isTranslated, setIsTranslated] = useState<boolean>(false);
-  console.log(formData);
 
   useEffect(() => {
     async function createTranslation() {
@@ -36,7 +35,7 @@ function App() {
           }
 
           const data = await response.json();
-          setTranslation(data);
+          setTranslation(data.translation);
           setIsTranslated(true);
         } catch (error) {
           console.error('Error: ', error);
